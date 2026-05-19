@@ -5,20 +5,12 @@ import { Toaster } from 'react-hot-toast';
 import React, { useState } from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60000,
-        retry: 2,
-        refetchOnWindowFocus: false,
-      },
-    },
-  }));
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-      <Toaster position="top-right" />
-    </QueryClientProvider>
+    <>
+      {React.createElement(QueryClientProvider, { client: queryClient }, children)}
+      {React.createElement(Toaster, { position: 'top-right' })}
+    </>
   );
 }

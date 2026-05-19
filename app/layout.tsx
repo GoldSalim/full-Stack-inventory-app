@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { Providers } from './providers';
-import Sidebar from '@/components/Sidebar';
-import Header from '@/components/Header';
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'InventoryPro - Inventory Management',
-  description: 'A comprehensive inventory management system',
+  title: 'InventoryPro',
+  description: 'Inventory Management System',
 };
 
 export default function RootLayout({
@@ -20,17 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          <div className="flex h-screen bg-gray-50">
-            <Sidebar />
-            <div className="flex-1 flex flex-col overflow-hidden">
-              <Header />
-              <main className="flex-1 overflow-y-auto">
-                {children}
-              </main>
-            </div>
+        <div style={{display: 'flex', height: '100vh'}}>
+          <Sidebar />
+          <div style={{flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden'}}>
+            <Header />
+            <main style={{flex: 1, overflow: 'auto', backgroundColor: '#f9fafb'}}>
+              {children}
+            </main>
           </div>
-        </Providers>
+        </div>
       </body>
     </html>
   );
